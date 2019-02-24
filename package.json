@@ -14,7 +14,7 @@
     "test-coverage": "jest --coverage",
     "test-coverage-bothbackends": "jest --runInBand --config jest.config.sqlite.js -- __test__/backend.test.js &&  jest --coverage",
     "clean": "rm -rf $OUTPUT_DIR",
-    "lint": "eslint --fix --ext js --ext jsx src",
+    "lint": "eslint --ext js --ext jsx src",
     "prod-build-client": "webpack --config ./webpack/config.js",
     "prod-build-server": "babel ./src -d ./build/server --source-maps --copy-files",
     "prod-build": "npm run clean && npm run prod-build-client && npm run prod-build-server",
