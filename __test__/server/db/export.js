@@ -1,4 +1,4 @@
-import {r} from '../../../src/server/models'
+import { r } from '../../../src/server/models'
 import { tables, indexQuery } from './utils'
 import fs from 'fs'
 

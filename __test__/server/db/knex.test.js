@@ -1,4 +1,4 @@
-import {r} from '../../../src/server/models'
+import { r } from '../../../src/server/models'
 import { indexQuery, tables } from './utils.js'
 jest.setTimeout(20000)
 
@@ -96,8 +96,8 @@ expect.extend({
     while (originalIndexes.length > 0) {
       // Index names are unique, so we can search by name in the received index array
       const originalIndex = originalIndexes.shift()
-      const { conname, table_from } = originalIndex
-      const scopedconname = `${table_from}.${conname}`
+      const { conname, tableFrom } = originalIndex
+      const scopedconname = `${tableFrom}.${conname}`
       const foundI = newIndexes.findIndex(el => el.conname === conname)
       if (foundI === -1) { // terminology to clarify the difference between a table index we're examinging and an index representing position in an array
         errors.push(`Expected index ${printExpected(scopedconname)} but it was not found`)
@@ -108,16 +108,16 @@ expect.extend({
         // Test for equality of the pg constraint def
         const originalIndexConstraintdef = originalIndex.pg_get_constraintdef
         const newIndexConstraintdef = newIndex.pg_get_constraintdef
-        if(originalIndexConstraintdef !== newIndexConstraintdef) {
-          errors.push(`Expected ${printExpected(scopedconname)} to have constraintdef ${printExpected(originalConstraintdef)}, but received ${printReceived(newIndexConstraintdef)}.`)
+        if (originalIndexConstraintdef !== newIndexConstraintdef) {
+          errors.push(`Expected ${printExpected(scopedconname)} to have constraintdef ${printExpected(originalIndexConstraintdef)}, but received ${printReceived(newIndexConstraintdef)}.`)
         }
       }
     }
     // at this point, the originalIndexes array will be empty. Check for any remaining items in newIndexes, and output appropriate errors if they exist (since they're extraneous).
     if (newIndexes.length > 0) {
       for (let i = 0; i < newIndexes.length; i++) {
-        const { conname, table_from } = newIndexes[i]
-        const scopedconname = `${table_from}.${conname}`
+        const { conname, tableFrom } = newIndexes[i]
+        const scopedconname = `${tableFrom}.${conname}`
         errors.push(`Received unexpected index ${printReceived(scopedconname)}`)
       }
     }

@@ -6,9 +6,8 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import { resolvers } from './api/schema'
 import { schema } from '../api/schema'
-import { accessRequired } from './api/errors'
 import mocks from './api/mocks'
-import { createLoaders, createTablesIfNecessary } from './models'
+import { createLoaders, createTablesIfNecessary, r } from './models'
 import passport from 'passport'
 import cookieSession from 'cookie-session'
 import { setupAuth0Passport, setupLocalAuthPassport } from './auth-passport'
@@ -19,7 +18,6 @@ import twilio from './api/lib/twilio'
 import { seedZipCodes } from './seeds/seed-zip-codes'
 import { setupUserNotificationObservers } from './notifications'
 import { TwimlResponse } from 'twilio'
-import {r} from './models'
 
 require('dotenv').config()
 
