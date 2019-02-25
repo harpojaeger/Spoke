@@ -7,7 +7,7 @@ message('Changed Files in this PR: \n - ' + modifiedMD)
 
 const linterOutput = fs.readFileSync('/tmp/eslint.out').toString()
 
-if (linterOutput.includes('Failed')) {
+if (linterOutput.includes('problems')) {
   markdown(`These changes failed to pass the linter:
     ${linterOutput}`)
 }
