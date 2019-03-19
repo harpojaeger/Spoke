@@ -9,9 +9,13 @@ const lintReport = linter.executeOnFiles([...modified, ...created])
 
 const { warningCount, errorCount } = lintReport
 const resultsTableHeader = '|File|Errors|Warnings\r|---|---|---|\r'
-const resultsTableRows = lintReport.results.map(file =>
-    `|${file.filePath}|${file.errorCount}|${file.warningCount}|`)
+const resultsTableRows = lintReport.results.map(file => {
+  const travisBasePath = /home\/travis\/build\/\w+\/Spoke\//
+  const localPath = file.filePath.replace(travisBasePath, '')
+  return `|${localPath}|${file.errorCount}|${file.warningCount}|`
+})
 const resultsTable = resultsTableHeader + resultsTableRows.join('\r')
+
 if (errorCount > 0) {
   fail(`Linter: ${errorCount} errors and ${warningCount} warnings.`)
   markdown(resultsTable)
@@ -21,10 +25,3 @@ if (errorCount > 0) {
 } else {
   markdown('This PR passed the linter!')
 }
-
-// const linterOutput = fs.readFileSync('/tmp/eslint.out').toString()
-
-// if (linterOutput.includes('problems')) {
-//   markdown(`These changes failed to pass the linter:
-//     ${linterOutput}`)
-// }
