@@ -9,7 +9,7 @@
     "no-console": ["off"],
     "prefer-template": ["off"],
     "semi": ["error", "never"],
-    "react/require-extension": "off",
+    "react/require-extension": "off"
   },
   "env": { "jest": true, "node": true, "browser": true, "jasmine": true }
 }
