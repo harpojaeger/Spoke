@@ -13,11 +13,11 @@ const resultsTableRows = lintReport.results.map(file =>
     `|${file.filePath}|${file.errorCount}|${file.warningCount}|`)
 const resultsTable = resultsTableHeader + resultsTableRows.join('\r')
 if (errorCount > 0) {
-  fail(`Linter found ${errorCount} errors and ${warningCount} warnings:
-    ${resultsTable}`)
+  fail(`Linter: ${errorCount} errors and ${warningCount} warnings.`)
+  markdown(resultsTable)
 } else if (warningCount > 0) {
-  warn(`Linter found ${warningCount} warnings:
-    ${resultsTable}`)
+  warn(`Linter: ${warningCount} warnings.`)
+  markdown(resultsTable)
 } else {
   markdown('This PR passed the linter!')
 }
