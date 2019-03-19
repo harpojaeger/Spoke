@@ -11,7 +11,6 @@ env:
   global:
   - secure: TODO
 before_script:
-- npm run lint | tee /tmp/eslint.out
 - npm run danger ci
 - psql -c 'CREATE DATABASE spoke_test;' -U postgres
 - psql -c "CREATE USER spoke_test WITH PASSWORD 'spoke_test';" -U postgres
