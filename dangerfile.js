@@ -8,7 +8,7 @@ const lintReport = linter.executeOnFiles([...modified, ...created])
 // console.log(lintReport.results)
 
 const { warningCount, errorCount } = lintReport
-const resultsTableHeader = '|File|Errors|Warnings\r|---|---|---|\r'
+const resultsTableHeader = '### Linter results\r|File|Errors|Warnings\r|---|---|---|\r'
 const resultsTableRows = lintReport.results.map(file => {
   const travisBasePath = /home\/travis\/build\/\w+\/Spoke\//
   const localPath = file.filePath.replace(travisBasePath, '')
